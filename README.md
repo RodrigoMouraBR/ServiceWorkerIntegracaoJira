@@ -1,4 +1,4 @@
-# ServiceWorkerIntegracaoJira
+# Service Worker Integracao Jira
 
 Comando para criação do container Docker RabbitMQ:
 
