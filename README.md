@@ -12,3 +12,7 @@ https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/
 https://www.atlassian.com/blog/jira-software/jql-the-most-flexible-way-to-search-jira-14
 https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-fields/
 https://www.atlassian.com/blog/jira-software/jql-the-most-flexible-way-to-search-jira-14
+
+
+observação: Fazer a configuração de multiplos startup, conforme imagem em anexo:
+![image](https://user-images.githubusercontent.com/31323149/147634778-9df10dd0-8f8f-421b-8efd-2e5c6d3fa8a3.png)
