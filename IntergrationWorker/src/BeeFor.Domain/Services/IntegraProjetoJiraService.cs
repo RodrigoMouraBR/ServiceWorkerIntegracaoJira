@@ -128,55 +128,14 @@ namespace BeeFor.Domain.Services
                 var quadroColunaResult = quadroColunaBeeFor.Where(c => c.IdQuadroColunaJira == Convert.ToInt32(result.Statuses[0].Id)).FirstOrDefault();
 
                 //Se a Coluna Existe
-                if (quadroColunaResult != null)
-                {
-                    var compareNome = quadroColunaResult.Nome.Trim() == result.Name.Trim();
-
-                    if (!compareNome)
-                    {
-                        var quadroColuna = new QuadroColuna(quadroColunaResult.IdQuadro,
-                                                            result.Name.Trim(),
-                                                            quadroColunaResult.Indice,
-                                                            quadroColunaResult.DataCriacao,
-                                                            quadroColunaResult.ResponsavelCriacao,
-                                                            quadroColunaResult.DataEdicao,
-                                                            quadroColunaResult.ResponsavelEdicao,
-                                                            quadroColunaResult.IdOrganizacao,
-                                                            quadroColunaResult.WipLimit,
-                                                            quadroColunaResult.Ativo,
-                                                            quadroColunaResult.IdQuadroColunaJira);
-
-                        quadroColuna.SetIdQuadroColuna(quadroColunaResult.Id);
-
-                        Queue.EnviacardParaFila(quadroColuna, "QuadroColunaQueue");
-                    }
-                }
+                if (quadroColunaResult != null) this.ParseValidacao_ColunaExiste(quadroColunaResult, result);
 
                 //Se a Coluna não Existe
                 int indice = 1;
                 if (quadroColunaResult == null)
                 {
-                    var quadroColuna = new QuadroColuna(quadro.Id,
-                                                        result.Name.Trim(),
-                                                        indice,
-                                                        DateTime.Now,
-                                                        quadro.ResponsavelCriacao,
-                                                        null,
-                                                        null,
-                                                        quadro.IdOrganizacao,
-                                                        0,
-                                                        true,
-                                                        Convert.ToInt32(result.Statuses[0].Id));
-
-                    quadroColuna.SetIdQuadroColuna(Guid.NewGuid());
-
-                    #region Enviar objeto para o RabbitMQ para fila QuadroColunaQueue
-
-                    Queue.EnviacardParaFila(quadroColuna, "QuadroColunaQueue");
-
+                    this.ParseValidacao_ColunaNaoExiste(quadro, result, indice);
                     indice++;
-
-                    #endregion
                 }
             }
 
@@ -207,7 +166,7 @@ namespace BeeFor.Domain.Services
                         var idColunaJiraBeeFor = idCardJiraBeeFor == null ? null : await _projetoRepository.PegarColunaPorId(idCardJiraBeeFor.IdQuadroColuna);
 
                         var idCardJira = quadroJira.Id;
-                        var idColunaJira = quadroJira.Fields.Status.Id;                      
+                        var idColunaJira = quadroJira.Fields.Status.Id;
 
                         #region NÃO EXISTE O CARD -> ENVIAR PARA FILA PARA SINCRONIZACAO
 
@@ -227,6 +186,53 @@ namespace BeeFor.Domain.Services
             }
             return null;
         }
+
+        private void ParseValidacao_ColunaNaoExiste(Quadro quadro, Column result, int indice)
+        {
+            var quadroColuna = new QuadroColuna(quadro.Id,
+                                                        result.Name.Trim(),
+                                                        indice,
+                                                        DateTime.Now,
+                                                        quadro.ResponsavelCriacao,
+                                                        null,
+                                                        null,
+                                                        quadro.IdOrganizacao,
+                                                        0,
+                                                        true,
+                                                        Convert.ToInt32(result.Statuses[0].Id));
+
+            quadroColuna.SetIdQuadroColuna(Guid.NewGuid());
+
+            #region Enviar objeto para o RabbitMQ para fila QuadroColunaQueue
+
+            Queue.EnviacardParaFila(quadroColuna, "QuadroColunaQueue");
+
+            #endregion
+        }
+        private void ParseValidacao_ColunaExiste(QuadroColuna quadroColunaResult, Column result)
+        {
+            var compareNome = quadroColunaResult.Nome.Trim() == result.Name.Trim();
+
+            if (!compareNome)
+            {
+                var quadroColuna = new QuadroColuna(quadroColunaResult.IdQuadro,
+                                                    result.Name.Trim(),
+                                                    quadroColunaResult.Indice,
+                                                    quadroColunaResult.DataCriacao,
+                                                    quadroColunaResult.ResponsavelCriacao,
+                                                    quadroColunaResult.DataEdicao,
+                                                    quadroColunaResult.ResponsavelEdicao,
+                                                    quadroColunaResult.IdOrganizacao,
+                                                    quadroColunaResult.WipLimit,
+                                                    quadroColunaResult.Ativo,
+                                                    quadroColunaResult.IdQuadroColunaJira);
+
+                quadroColuna.SetIdQuadroColuna(quadroColunaResult.Id);
+
+                Queue.EnviacardParaFila(quadroColuna, "QuadroColunaQueue");
+            }
+        }
+
         private void ParseValidacao_CardNaoExiste(QuadroColuna quadroColunaBeeFor, Issue quadroJira)
         {
             var quadroColunaCard = new QuadroColunaCard(quadroColunaBeeFor.Id,

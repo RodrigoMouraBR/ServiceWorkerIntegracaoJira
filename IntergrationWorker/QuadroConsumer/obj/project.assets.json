@@ -6237,11 +6237,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\QuadroConsumer\\QuadroConsumer.csproj",
+      "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\QuadroConsumer\\QuadroConsumer.csproj",
       "projectName": "QuadroConsumer",
-      "projectPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\QuadroConsumer\\QuadroConsumer.csproj",
+      "projectPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\QuadroConsumer\\QuadroConsumer.csproj",
       "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\QuadroConsumer\\obj\\",
+      "outputPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\QuadroConsumer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6259,8 +6259,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj": {
-              "projectPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj"
+            "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj": {
+              "projectPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj"
             }
           }
         }

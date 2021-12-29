@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MtINpCUTNFeAdDuwPsYZS5yS1PbBlZz6iLyTQ1p33ibMuI/w/AGe9sw/+drfWQSlslU6VlDwUnq3G+HKeUpRDg==",
+  "dgSpecHash": "muv/SxWHDECeuGXOgBJ4PwWg8bQp/wXoatJgKAxNHke0whbwgzwQzoX0mXcGJrKc/PuWAjP4id+OnMU1wWr3LA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Data\\BeeFor.Data.csproj",
+  "projectFilePath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Data\\BeeFor.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rodri\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

@@ -183,11 +183,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Core\\BeeFor.Core.csproj",
+      "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Core\\BeeFor.Core.csproj",
       "projectName": "BeeFor.Core",
-      "projectPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Core\\BeeFor.Core.csproj",
+      "projectPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Core\\BeeFor.Core.csproj",
       "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Core\\obj\\",
+      "outputPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",

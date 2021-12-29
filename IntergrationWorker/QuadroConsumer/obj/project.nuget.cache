@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SpptKQBj/XYy4jkbSaBcidZ16zGiQ0uD9UjDBR6WdML4Bg4T9tAQNKHOZax/+YfKBqlnQgkyGKreFSHJV3sMxw==",
+  "dgSpecHash": "BG+jXO8RmVmlJBb6RwAKN59y0fdduVx2pyozJ0tkkNnOzzcPRwStsZD71ki626ARgREXhmpg55HEqvLLIrCS+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\QuadroConsumer\\QuadroConsumer.csproj",
+  "projectFilePath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\QuadroConsumer\\QuadroConsumer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rodri\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

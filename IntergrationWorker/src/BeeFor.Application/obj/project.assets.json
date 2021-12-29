@@ -6173,11 +6173,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj",
+      "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj",
       "projectName": "BeeFor.Application",
-      "projectPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj",
+      "projectPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj",
       "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Application\\obj\\",
+      "outputPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6195,11 +6195,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Data\\BeeFor.Data.csproj": {
-              "projectPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Data\\BeeFor.Data.csproj"
+            "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Data\\BeeFor.Data.csproj": {
+              "projectPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Data\\BeeFor.Data.csproj"
             },
-            "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Domain\\BeeFor.Domain.csproj": {
-              "projectPath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Domain\\BeeFor.Domain.csproj"
+            "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Domain\\BeeFor.Domain.csproj": {
+              "projectPath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Domain\\BeeFor.Domain.csproj"
             }
           }
         }

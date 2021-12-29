@@ -30,6 +30,7 @@ namespace BeeFor.Domain.Services
             return await _projetoRepository.UpdateQuadro(quadro);
         }
 
+        #region Seguindo um dos Design Patterns do GoF (Adapter)
         public async Task<bool> UpdateQuadroColuna(QuadroColuna quadroColuna)
         {
             var colunaExiste = await _projetoRepository.PegarColunaPorId(quadroColuna.Id);
@@ -44,6 +45,7 @@ namespace BeeFor.Domain.Services
             return false;
         }
 
+       
         public async Task<bool> UpdateQuadroColunaCard(QuadroColunaCard quadroColunaCard)
         {
            var colunaCardExiste = await _projetoRepository.PegarQuadroColunaCardPorId(quadroColunaCard.Id);
@@ -57,5 +59,6 @@ namespace BeeFor.Domain.Services
 
             return false;
         }
+        #endregion
     }
 }
