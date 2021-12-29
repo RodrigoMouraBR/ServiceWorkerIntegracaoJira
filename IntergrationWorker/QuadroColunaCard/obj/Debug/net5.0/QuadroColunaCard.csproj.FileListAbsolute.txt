@@ -1,0 +1,16 @@
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\bin\Debug\net5.0\QuadroColunaCard.exe
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\bin\Debug\net5.0\QuadroColunaCard.deps.json
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\bin\Debug\net5.0\QuadroColunaCard.runtimeconfig.json
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\bin\Debug\net5.0\QuadroColunaCard.runtimeconfig.dev.json
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\bin\Debug\net5.0\QuadroColunaCard.dll
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\bin\Debug\net5.0\ref\QuadroColunaCard.dll
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\bin\Debug\net5.0\QuadroColunaCard.pdb
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\QuadroColunaCard.csproj.AssemblyReference.cache
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\QuadroColunaCard.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\QuadroColunaCard.AssemblyInfoInputs.cache
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\QuadroColunaCard.AssemblyInfo.cs
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\QuadroColunaCard.csproj.CoreCompileInputs.cache
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\QuadroColunaCard.dll
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\ref\QuadroColunaCard.dll
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\QuadroColunaCard.pdb
+C:\Users\rodri\OneDrive\Documentos\Repositorio\Consumer\IntergrationWorker\QuadroColunaCard\obj\Debug\net5.0\QuadroColunaCard.genruntimeconfig.cache
