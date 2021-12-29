@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+Co1+af4xfKimCrlFASCr0EXMZjg6s26pbVPEoOXaQKlLlr2vRQHFIeptLhOm1M670QtfOZErXvizCmB8gm6+Q==",
+  "dgSpecHash": "41M3FuIHmKzuFrLi/n7FFZfqaK1AJae6DTGYSwHPzJ7eg7gx/FJncSbO+cvtL4+aKYJwIdsii+FuBEX9tSdSbg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj",
+  "projectFilePath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Application\\BeeFor.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rodri\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Muefxm8AnzcptZJLdM3xtBL3pgUC6kjdmsg4vTbXVDCpQ1G2rRuDrgS1QK1eOdDlN+Oqo2bEUUMrJsk1hHJirg==",
+  "dgSpecHash": "EluDl7N8PNTSeqV4VhaVfycmhahUlHmBI7gaDCkeQ8/UKdqs5quQ1fM+lx3/rg/KyQh/olEItuly+ZJoHdvpKA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\src\\BeeFor.Core\\BeeFor.Core.csproj",
+  "projectFilePath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\src\\BeeFor.Core\\BeeFor.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rodri\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",

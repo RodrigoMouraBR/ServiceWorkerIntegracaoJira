@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "k64isyPydo2AqYkpUiiiBarJx4ulZp9E/uKwySH7dnRy0jq8qQRWGkFSkXALP84mOgxDXARUT4UKZUZE5PGl3g==",
+  "dgSpecHash": "t8wfVpWIBx3bjLSwjeOur0RxzZfWzKoxW79OpfT06/Lz7Q5CV6RRmwKLaQ+wZOG0A+hl19DHopz8bvN5zj2MEA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rodri\\OneDrive\\Documentos\\Repositorio\\Consumer\\IntergrationWorker\\WorkerService1\\WorkerService1.csproj",
+  "projectFilePath": "C:\\Users\\rodri\\source\\repos\\ServiceWorkerIntegracaoJira\\IntergrationWorker\\WorkerService1\\WorkerService1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rodri\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
