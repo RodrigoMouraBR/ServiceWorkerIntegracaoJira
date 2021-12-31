@@ -15,18 +15,18 @@ https://www.mongodb.com/products/compass
 
 
 
-observação: Fazer a configuração de multiplos startup, conforme imagem em anexo:
+### observação: Fazer a configuração de multiplos startup, conforme imagem em anexo:
 ![image](https://user-images.githubusercontent.com/31323149/147634778-9df10dd0-8f8f-421b-8efd-2e5c6d3fa8a3.png)
 
 
-** Deverá colocar a string de conexão no arquivo appSettings.json
+### ** Deverá colocar a string de conexão no arquivo appSettings.json
 
 ![image](https://user-images.githubusercontent.com/31323149/147807147-a988bc6f-d9b6-4150-8663-8bc3b69a56f8.png)
 
 
 
 
-Documentação Jira:
+### Documentação Jira:
 
 https://developer.atlassian.com/cloud/jira/software/rest/intro/
 https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/
