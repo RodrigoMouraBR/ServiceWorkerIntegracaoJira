@@ -96,3 +96,4 @@ C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\B
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Application\obj\Debug\net5.0\BeeFor.Application.dll
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Application\obj\Debug\net5.0\ref\BeeFor.Application.dll
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Application\obj\Debug\net5.0\BeeFor.Application.pdb
+C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Application\bin\Debug\net5.0\appsettings.json
