@@ -18,5 +18,7 @@ observação: Fazer a configuração de multiplos startup, conforme imagem em an
 ![image](https://user-images.githubusercontent.com/31323149/147634778-9df10dd0-8f8f-421b-8efd-2e5c6d3fa8a3.png)
 
 
-** Deverá colocar a string de conexão no arquivo appSettings, em cada Console Application e também no Service Worker. 
-Poderia ter implementado em um único arquivo, mas por estrategia coloquei em cada uma das instancias.
+** Deverá colocar a string de conexão no arquivo appSettings.json
+
+![image](https://user-images.githubusercontent.com/31323149/147807147-a988bc6f-d9b6-4150-8663-8bc3b69a56f8.png)
+
