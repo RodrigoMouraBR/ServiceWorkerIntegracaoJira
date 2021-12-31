@@ -1,15 +1,18 @@
 # Service Worker Integracao Jira
 
-Comando para criação do container Docker RabbitMQ:
+## Comando para criação do container Docker RabbitMQ:
 
 docker run -d --hostname rabbitserver --name rabbitmq-server -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 
-Commando para criação do container Docker MongoDb:
+## Commando para criação do container Docker MongoDb:
 
 docker run --name meu_mongo -p 27018:27017 -d mongo
 
-Download Interface visual MongoDb Compass
+## Download Interface visual MongoDb Compass
 https://www.mongodb.com/products/compass
+
+![image](https://user-images.githubusercontent.com/31323149/147807383-6e0f3899-2378-4e72-9337-7b2f29fe5f22.png)
+
 
 
 observação: Fazer a configuração de multiplos startup, conforme imagem em anexo:
