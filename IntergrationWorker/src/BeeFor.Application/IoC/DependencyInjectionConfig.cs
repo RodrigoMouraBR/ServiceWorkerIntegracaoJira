@@ -4,14 +4,13 @@ using BeeFor.Application.Services;
 using BeeFor.Core.Interfaces;
 using BeeFor.Core.Notifications;
 using BeeFor.Data.Context;
+using BeeFor.Data.IoC;
 using BeeFor.Data.Repositories;
 using BeeFor.Domain.Interfaces.Repositories;
 using BeeFor.Domain.Interfaces.Services;
 using BeeFor.Domain.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.IO;
 
 namespace BeeFor.Application.IoC
 {
@@ -28,17 +27,11 @@ namespace BeeFor.Application.IoC
                     .AddScoped<IProjetoRepository, ProjetoRepository>()
                     .AddScoped<INotifier, Notifier>();
 
-            var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .Build();
-
             var optionsBuilder = new DbContextOptionsBuilder<BeeForContext>();
-            optionsBuilder.UseSqlServer(config.GetConnectionString("goobeeteamsDB"));
-
             services.AddScoped<BeeForContext>(s => new BeeForContext(optionsBuilder.Options));
-
             services.AddAutoMapper(typeof(DomainToModelMapping));
+
+            services.ResolveDependenciesMongoDb();
 
             return services;
         }

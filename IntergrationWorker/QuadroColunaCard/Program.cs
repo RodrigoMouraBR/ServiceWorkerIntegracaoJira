@@ -45,21 +45,10 @@ namespace QuadroColunaCardConsumer
 
                         if (quadroColunaCard != null)
                         {
-                            var quadroColunaCardList = new List<QuadroColunaCardViewModel>();
-                            quadroColunaCardList.Add(quadroColunaCard);
-
-                            foreach (var item in quadroColunaCardList)
-                            {
-                                var results = serviceProvider.GetService<IProjetoAppService>().UpdateQuadroColunaCard(quadroColunaCard);
-
-                                if (results.Result)
-                                {
-                                    quadroColunaCardList.Remove(item);
-                                    Console.WriteLine("Processado....");
-                                    string json = JsonSerializer.Serialize(quadroColunaCard);
-                                    Console.WriteLine(json);
-                                }
-                            }
+                            var results = serviceProvider.GetService<IProjetoAppService>().UpdateQuadroColunaCard(quadroColunaCard);
+                            Console.WriteLine("Processado....");
+                            string json = JsonSerializer.Serialize(quadroColunaCard);
+                            Console.WriteLine(json);
                         }
 
                         channel.BasicAck(ea.DeliveryTag, false);
@@ -82,7 +71,7 @@ namespace QuadroColunaCardConsumer
         }
         public static IServiceCollection ResolveDependencies(IServiceCollection services)
         {
-            services.ResolveDependencies();           
+            services.ResolveDependencies();
             return services;
         }
     }

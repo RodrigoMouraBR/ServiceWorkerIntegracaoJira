@@ -1,5 +1,7 @@
-﻿using BeeFor.Data.Context;
+﻿using BeeFor.Core.Constants;
+using BeeFor.Data.Context;
 using BeeFor.Domain.Entities;
+using BeeFor.Domain.Entities.MongoDb;
 using BeeFor.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,11 +14,14 @@ namespace BeeFor.Data.Repositories
     public class ProjetoRepository : IProjetoRepository
     {
         protected readonly BeeForContext _context;
+        protected readonly MongoDbContext _mongoDbContext;
         public ProjetoRepository(BeeForContext context)
         {
             _context = context;
+            _mongoDbContext = new MongoDbContext();
         }
 
+        #region Consultas
         public async Task<Projeto> ObterProjetoPorIdJira(string idJira)
         {
             return await _context.Projeto.Where(x => x.IdJira == idJira.Trim()).AsNoTracking().SingleOrDefaultAsync();
@@ -45,6 +50,13 @@ namespace BeeFor.Data.Repositories
         {
             return await _context.QuadroColuna.Where(x => x.Id == id).AsNoTracking().SingleOrDefaultAsync();
         }
+        public async Task<QuadroColunaCard> PegarQuadroColunaCardPorId(Guid id)
+        {
+            return await _context.QuadroColunaCard.Where(x => x.Id == id).AsNoTracking().SingleOrDefaultAsync();
+        }
+        #endregion
+
+        #region Update
         public async Task<bool> UpdateProjeto(Projeto projeto)
         {
             var entry = _context.Projeto.FirstOrDefault(e => e.Id == projeto.Id);
@@ -68,14 +80,6 @@ namespace BeeFor.Data.Repositories
             var entry = _context.QuadroColuna.FirstOrDefault(e => e.Id == quadroColuna.Id);
             _context.Entry(entry).CurrentValues.SetValues(quadroColuna);
             var result = await _context.SaveChangesAsync();
-            if (result == 1) return true;
-
-            return false;
-        }
-        public async Task<bool> AddQuadroColuna(QuadroColuna quadroColuna)
-        {
-            await _context.QuadroColuna.AddAsync(quadroColuna);
-            var result = await _context.SaveChangesAsync();
 
             if (result == 1) return true;
 
@@ -91,19 +95,50 @@ namespace BeeFor.Data.Repositories
 
             return false;
         }
-        public async Task<bool> AddQuadroColunaCard(QuadroColunaCard quadroColunaCard)
+        #endregion
+
+        #region Create
+        public async Task<bool> AddQuadroColuna(QuadroColuna quadroColuna)
         {
-            await _context.QuadroColunaCard.AddAsync(quadroColunaCard);
+            await _context.QuadroColuna.AddAsync(quadroColuna);
             var result = await _context.SaveChangesAsync();
 
             if (result == 1) return true;
 
             return false;
         }
-        public async Task<QuadroColunaCard> PegarQuadroColunaCardPorId(Guid id)
+        public async Task<bool> AddQuadroColunaCard(QuadroColunaCard quadroColunaCard)
         {
-            return await _context.QuadroColunaCard.Where(x => x.Id == id).AsNoTracking().SingleOrDefaultAsync();
+            await _context.QuadroColunaCard.AddAsync(quadroColunaCard);
+            var result = await _context.SaveChangesAsync();
+
+            if (result == 1)
+            {
+                await AddLogAcaoPrincipal(quadroColunaCard.ResponsavelCriacao, string.Empty, ConstantsValues.criouCard, null, quadroColunaCard.Id, quadroColunaCard.Nome, quadroColunaCard.IdOrganizacao);
+                return true;
+            }
+
+            return false;
         }
+        #endregion
+
+
+        #region Logs MongoDb
+
+        private async Task AddLogAcaoPrincipal(Guid? responsavelCriacao,
+                                                string nomePessoaResponsavel,
+                                                string acao,
+                                                Guid? idTime,
+                                                Guid IdEntidadeAlterada,
+                                                string nomeEntidadeAlterada,                                              
+                                                Guid IdOrganizacao)
+        {
+            var logAcaoPrincipal = new LogAcaoPrincipal(responsavelCriacao, nomePessoaResponsavel, acao, idTime, IdEntidadeAlterada, nomeEntidadeAlterada, IdOrganizacao);     
+            await _mongoDbContext.LogsAcoesPrincipais.InsertOneAsync(logAcaoPrincipal);
+        }
+
+
+        #endregion
 
         public void Dispose()
         {
