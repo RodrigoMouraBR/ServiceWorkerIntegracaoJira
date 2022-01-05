@@ -143,7 +143,8 @@ namespace BeeFor.Domain.Services
         }
         private async Task<List<QuadroColunaCard>> ValidarProjetoQuadroColunaCardIntegrado(List<QuadroColuna> quadroColunas, ConfiguracaoIntegracao configuracaoIntegracao, Quadro quadro)
         {
-            var endPoint = URLConstants.obterProjetoQuadroTarefaJira;
+            // var endPoint = URLConstants.obterProjetoQuadroTarefaJira;
+            var endPoint = URLConstants.obterProjetoQuadroTarefaJira_Changelog;
 
             var results = new BoardEpicNoneIssueResponse();
 
@@ -183,9 +184,19 @@ namespace BeeFor.Domain.Services
                         listIdQuadroCard.Add(quadroJira.Id);
                     }
                 }
+
+                //TODO: CHAMADA DO METODO QUE IRÁ PEGAR O HISTORICO DE MOVIMENTAÇÃO DE CARDS
+
+
             }
             return null;
         }
+
+        //TODO: CRIAR UM METODO PRIVADO QUE IRÁ FAZER TODA A TRATATIVA DE LOGS E CHAMAR A CAMADA DE REPOSITORIO PARA PERSISTIR NO BANCO DE DADOS MONGODB
+
+
+
+        //-----------------------------
 
         private void ParseValidacao_ColunaNaoExiste(Quadro quadro, Column result, int indice)
         {
