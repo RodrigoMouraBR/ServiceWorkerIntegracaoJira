@@ -163,21 +163,18 @@ namespace BeeFor.Domain.Services
 
                     if (!cardConferido)
                     {
-                        var idCardJiraBeeFor = await _projetoRepository.PegarCardPorIdJira(quadroJira.Id);
-                        var idColunaJiraBeeFor = idCardJiraBeeFor == null ? null : await _projetoRepository.PegarColunaPorId(idCardJiraBeeFor.IdQuadroColuna);
-
-                        var idCardJira = quadroJira.Id;
-                        var idColunaJira = quadroJira.Fields.Status.Id;
+                        var _quadroColunaCard = await _projetoRepository.PegarCardPorIdJira(quadroJira.Id);
+                        var _quadroColuna = _quadroColunaCard == null ? null : await _projetoRepository.PegarColunaPorId(_quadroColunaCard.IdQuadroColuna);
 
                         #region NÃO EXISTE O CARD -> ENVIAR PARA FILA PARA SINCRONIZACAO
 
-                        if (idCardJiraBeeFor == null) ParseValidacao_CardNaoExiste(quadroColunaBeeFor, quadroJira);
+                        if (_quadroColunaCard == null) ParseValidacao_CardNaoExiste(quadroColunaBeeFor, quadroJira);
 
                         #endregion
 
                         #region EXISTE O CARD / ESTÁ EM COLUNAS DIFERENTES (JIRA X BEEFOR) PREVALECE O JIRA -> ENVIAR PARA FILA PARA SINCRONIZACAO
 
-                        if (idCardJiraBeeFor != null) ParseValidacao_CardEmColunaDiferente(quadroColunaBeeFor, quadroJira, idColunaJira, idColunaJiraBeeFor, idCardJiraBeeFor);
+                        if (_quadroColunaCard != null) ParseValidacao_CardEmColunaDiferente(quadroColunaBeeFor, quadroJira, quadroJira.Fields.Status.Id, _quadroColuna, _quadroColunaCard);
 
                         #endregion
 
@@ -214,7 +211,6 @@ namespace BeeFor.Domain.Services
                 }
             }
         }
-
         private void ParseValidacao_ColunaNaoExiste(Quadro quadro, Column result, int indice)
         {
             var quadroColuna = new QuadroColuna(quadro.Id,
