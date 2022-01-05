@@ -42,6 +42,7 @@ namespace BeeFor.Domain.Services
                 var quadro = await this.ValidarProjetoQuadroIntegrado(projeto, configuracaoIntegracao);
                 var quadroColuna = await this.ValidarProjetoQuadroColunaIntegrado(quadro, configuracaoIntegracao);
                 var quadroColunaCard = await this.ValidarProjetoQuadroColunaCardIntegrado(quadroColuna, configuracaoIntegracao, quadro);
+                await ParseValidacao_ArquivarCard(quadro, quadroColunaCard);
             }
         }
         private async Task<List<Projeto>> ValidarProjetoIntegrado(List<ProjetoJiraResponse> projetoJiraResponseList)
@@ -141,9 +142,8 @@ namespace BeeFor.Domain.Services
 
             return quadroColunaBeeFor;
         }
-        private async Task<List<QuadroColunaCard>> ValidarProjetoQuadroColunaCardIntegrado(List<QuadroColuna> quadroColunas, ConfiguracaoIntegracao configuracaoIntegracao, Quadro quadro)
+        private async Task<BoardEpicNoneIssueResponse> ValidarProjetoQuadroColunaCardIntegrado(List<QuadroColuna> quadroColunas, ConfiguracaoIntegracao configuracaoIntegracao, Quadro quadro)
         {
-            // var endPoint = URLConstants.obterProjetoQuadroTarefaJira;
             var endPoint = URLConstants.obterProjetoQuadroTarefaJira_Changelog;
 
             var results = new BoardEpicNoneIssueResponse();
@@ -184,19 +184,36 @@ namespace BeeFor.Domain.Services
                         listIdQuadroCard.Add(quadroJira.Id);
                     }
                 }
-
-                //TODO: CHAMADA DO METODO QUE IRÁ PEGAR O HISTORICO DE MOVIMENTAÇÃO DE CARDS
-
-
             }
-            return null;
+            return projetoQuadroTarefa.Item1;
         }
 
-        //TODO: CRIAR UM METODO PRIVADO QUE IRÁ FAZER TODA A TRATATIVA DE LOGS E CHAMAR A CAMADA DE REPOSITORIO PARA PERSISTIR NO BANCO DE DADOS MONGODB
 
+        private async Task ParseValidacao_ArquivarCard(Quadro quadro, BoardEpicNoneIssueResponse boardEpicNoneIssueResponse)
+        {
+            //Buscar as colunas pelo id do quadro
+            var quadroColunasBeeFor = await _projetoRepository.ObterProjetoQuadroColunaPorIdQuadro(quadro.Id);
 
+            foreach (var quadroColunaBeeFor in quadroColunasBeeFor)
+            {
+                //Buscar os cards pelo id coluna
+                var cardsBeeFor = await _projetoRepository.ObterProjetoQuadroColunaCardPorIdQuadro(quadroColunaBeeFor.Id);
 
-        //-----------------------------
+                foreach (var cardBeeFor in cardsBeeFor)
+                {
+                    var quadroColunaJira = boardEpicNoneIssueResponse.Issues.Where(c => c.Id == cardBeeFor.IdColunaCardJira).Any();
+
+                    if (!quadroColunaJira)
+                    {
+                        if (!cardBeeFor.Arquivado)
+                        {
+                            cardBeeFor.SetArquivado(true);
+                            await _projetoRepository.UpdateQuadroColunaCard(cardBeeFor);
+                        }
+                    }
+                }
+            }
+        }
 
         private void ParseValidacao_ColunaNaoExiste(Quadro quadro, Column result, int indice)
         {
@@ -243,7 +260,6 @@ namespace BeeFor.Domain.Services
                 Queue.EnviacardParaFila(quadroColuna, "QuadroColunaQueue");
             }
         }
-
         private void ParseValidacao_CardNaoExiste(QuadroColuna quadroColunaBeeFor, Issue quadroJira)
         {
             var quadroColunaCard = new QuadroColunaCard(quadroColunaBeeFor.Id,
