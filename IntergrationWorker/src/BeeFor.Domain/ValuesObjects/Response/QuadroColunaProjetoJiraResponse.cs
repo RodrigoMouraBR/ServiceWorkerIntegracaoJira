@@ -38,7 +38,7 @@ namespace BeeFor.Domain.ValuesObjects.Response
     public class Column
     {
         public string Name { get; set; }
-        public List<Statu> Statuses { get; set; }
+        public List<Statuss> Statuses { get; set; }
     }
 
     public class ColumnConfig
