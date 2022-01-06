@@ -2,6 +2,7 @@
 using BeeFor.Core.Queue;
 using BeeFor.Core.Services;
 using BeeFor.Domain.Entities;
+using BeeFor.Domain.Entities.MongoDb;
 using BeeFor.Domain.Interfaces.Repositories;
 using BeeFor.Domain.Interfaces.Services;
 using BeeFor.Domain.Services.Common;
@@ -42,7 +43,57 @@ namespace BeeFor.Domain.Services
                 var quadro = await this.ValidarProjetoQuadroIntegrado(projeto, configuracaoIntegracao);
                 var quadroColuna = await this.ValidarProjetoQuadroColunaIntegrado(quadro, configuracaoIntegracao);
                 var quadroColunaCard = await this.ValidarProjetoQuadroColunaCardIntegrado(quadroColuna, configuracaoIntegracao, quadro);
+                await this.ValidarChangelogIntegrado(configuracaoIntegracao, quadro);
             }
+        }
+
+        private async Task<List<QuadroColunaCard>> ValidarChangelogIntegrado(ConfiguracaoIntegracao configuracaoIntegracao, Quadro quadro)
+        {
+            var endPoint = URLConstants.obterProjetoQuadroTarefaJira_Changelog;
+
+            var results = new BoardEpicNoneIssueResponse();
+
+            var projetoQuadroTarefa = await InvokeEndPoint.Invoke(configuracaoIntegracao, endPoint, results, quadro.IdQuadroJira, false);
+
+            foreach (var quadroColunaJira in projetoQuadroTarefa.Item1?.Issues)
+            {
+                var quadroColunaBeeFor = await _projetoRepository.ObterProjetoQuadroColunaPorIdQuadroColunaJira(Convert.ToInt32(quadroColunaJira.Fields.Status.Id));
+                var quadroJiraList = projetoQuadroTarefa.Item1?.Issues
+                    .Where(c => c.Fields.Status.Id == quadroColunaBeeFor.IdQuadroColunaJira.ToString());
+
+                foreach (var quadroJira in quadroJiraList)
+                {
+                    var quadroColunaCard = await _projetoRepository.PegarCardPorIdJira(quadroJira.Id);
+
+                    foreach (var histories in quadroColunaJira?.Changelog?.Histories)
+                    {
+                        foreach (var history in histories.Items.Where(x => x.Field.ToLower() == "status"))
+                        {
+                            _ = int.TryParse(history.From, out int idQuadroColunaJiraDe);
+                            _ = int.TryParse(history.To, out int idQuadroColunaJiraPara);
+                            _ = DateTime.TryParse(histories.Created, out DateTime dataCriacao);
+
+                            var quadroColunaCardDe = await _projetoRepository.PegarColunaPorIdJira(idQuadroColunaJiraDe);
+                            var quadroColunaCardPara = await _projetoRepository.PegarColunaPorIdJira(idQuadroColunaJiraPara);
+
+                            CardLog cardLog = new CardLog(
+                                quadroColunaCard.Id,
+                                quadroColunaCard,
+                                quadroColunaCardDe.Id,
+                                quadroColunaCardDe,
+                                quadroColunaCardPara.Id,
+                                quadroColunaCardPara,
+                                quadroColunaCard.IdOrganizacao,
+                                dataCriacao);
+
+                            bool existelog = await _projetoRepository.ExisteLog(cardLog);
+                            if (!existelog)                            
+                                await _projetoRepository.AddCardLog(cardLog);
+                        }
+                    }
+                }
+            }
+            return null;
         }
         private async Task<List<Projeto>> ValidarProjetoIntegrado(List<ProjetoJiraResponse> projetoJiraResponseList)
         {
@@ -184,19 +235,9 @@ namespace BeeFor.Domain.Services
                         listIdQuadroCard.Add(quadroJira.Id);
                     }
                 }
-
-                //TODO: CHAMADA DO METODO QUE IRÁ PEGAR O HISTORICO DE MOVIMENTAÇÃO DE CARDS
-
-
             }
             return null;
         }
-
-        //TODO: CRIAR UM METODO PRIVADO QUE IRÁ FAZER TODA A TRATATIVA DE LOGS E CHAMAR A CAMADA DE REPOSITORIO PARA PERSISTIR NO BANCO DE DADOS MONGODB
-
-
-
-        //-----------------------------
 
         private void ParseValidacao_ColunaNaoExiste(Quadro quadro, Column result, int indice)
         {

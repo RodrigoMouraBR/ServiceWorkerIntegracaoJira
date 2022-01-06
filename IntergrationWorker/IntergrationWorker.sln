@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadroConsumer", "QuadroCon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadroColunaConsumer", "QuadroColunaConsumer\QuadroColunaConsumer.csproj", "{4638439A-4CBD-4366-A5CA-F18A48D15549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuadroColunaCardConsumer", "QuadroColunaCard\QuadroColunaCardConsumer.csproj", "{12BBBCDE-A9B1-4182-8377-9CFBE374CE46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadroColunaCardConsumer", "QuadroColunaCard\QuadroColunaCardConsumer.csproj", "{12BBBCDE-A9B1-4182-8377-9CFBE374CE46}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangelogConsumer", "ChangelogConsumer\ChangelogConsumer.csproj", "{745DAB03-628E-4982-AE15-A03CCE039604}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{12BBBCDE-A9B1-4182-8377-9CFBE374CE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12BBBCDE-A9B1-4182-8377-9CFBE374CE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12BBBCDE-A9B1-4182-8377-9CFBE374CE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745DAB03-628E-4982-AE15-A03CCE039604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745DAB03-628E-4982-AE15-A03CCE039604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{745DAB03-628E-4982-AE15-A03CCE039604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{745DAB03-628E-4982-AE15-A03CCE039604}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
