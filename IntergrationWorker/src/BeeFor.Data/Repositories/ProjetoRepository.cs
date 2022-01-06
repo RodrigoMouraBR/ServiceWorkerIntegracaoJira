@@ -117,11 +117,7 @@ namespace BeeFor.Data.Repositories
             await _context.QuadroColunaCard.AddAsync(quadroColunaCard);
             var result = await _context.SaveChangesAsync();
 
-            if (result == 1)
-            {
-                await AddLogAcaoPrincipal(quadroColunaCard.ResponsavelCriacao, string.Empty, ConstantsValues.criouCard, null, quadroColunaCard.Id, quadroColunaCard.Nome, quadroColunaCard.IdOrganizacao);
-                return true;
-            }
+            if (result == 1) return true;          
 
             return false;
         }

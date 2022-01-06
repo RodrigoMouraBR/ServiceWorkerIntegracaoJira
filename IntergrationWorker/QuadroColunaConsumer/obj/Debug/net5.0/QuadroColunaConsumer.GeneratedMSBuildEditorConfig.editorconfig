@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = QuadroColunaConsumer
-build_property.ProjectDir = C:\Users\eferreira\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\QuadroColunaConsumer\
+build_property.ProjectDir = C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\QuadroColunaConsumer\
