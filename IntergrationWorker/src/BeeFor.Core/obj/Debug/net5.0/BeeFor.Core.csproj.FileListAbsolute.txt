@@ -38,7 +38,6 @@ C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\B
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\bin\Debug\net5.0\BeeFor.Core.dll
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\bin\Debug\net5.0\ref\BeeFor.Core.dll
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\bin\Debug\net5.0\BeeFor.Core.pdb
-C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\obj\Debug\net5.0\BeeFor.Core.csproj.AssemblyReference.cache
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\obj\Debug\net5.0\BeeFor.Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\obj\Debug\net5.0\BeeFor.Core.AssemblyInfoInputs.cache
 C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\obj\Debug\net5.0\BeeFor.Core.AssemblyInfo.cs

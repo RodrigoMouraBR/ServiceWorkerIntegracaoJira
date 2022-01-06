@@ -54,5 +54,10 @@ namespace BeeFor.Domain.Entities
         {
             Id = id;
         }
+
+        public void SetArquivado(bool arquivado)
+        {
+            Arquivado = arquivado;
+        }
     }
 }
