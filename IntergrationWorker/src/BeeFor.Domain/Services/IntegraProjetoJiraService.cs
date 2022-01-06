@@ -44,11 +44,11 @@ namespace BeeFor.Domain.Services
                 var quadroColuna = await this.ValidarProjetoQuadroColunaIntegrado(quadro, configuracaoIntegracao);
                 var quadroColunaCard = await this.ValidarProjetoQuadroColunaCardIntegrado(quadroColuna, configuracaoIntegracao, quadro);
                 await ParseValidacao_ArquivarCard(quadro, quadroColunaCard);
-                await this.ValidarChangelogIntegrado(configuracaoIntegracao, quadro);
+                await ValidarChangelogIntegrado(configuracaoIntegracao, quadro);
             }
         }
 
-        private async Task<List<QuadroColunaCard>> ValidarChangelogIntegrado(ConfiguracaoIntegracao configuracaoIntegracao, Quadro quadro)
+        private async Task ValidarChangelogIntegrado(ConfiguracaoIntegracao configuracaoIntegracao, Quadro quadro)
         {
             var endPoint = URLConstants.obterProjetoQuadroTarefaJira_Changelog;
 
@@ -62,10 +62,10 @@ namespace BeeFor.Domain.Services
                 var quadroJiraList = projetoQuadroTarefa.Item1?.Issues
                     .Where(c => c.Fields.Status.Id == quadroColunaBeeFor.IdQuadroColunaJira.ToString());
 
-                foreach (var quadroJira in quadroJiraList)
-                {
-                    var quadroColunaCard = await _projetoRepository.PegarCardPorIdJira(quadroJira.Id);
+                var quadroColunaCard = await _projetoRepository.PegarCardPorIdJira(quadroColunaJira.Id);
 
+                if (quadroColunaCard != null)
+                {
                     foreach (var histories in quadroColunaJira?.Changelog?.Histories)
                     {
                         foreach (var history in histories.Items.Where(x => x.Field.ToLower() == "status"))
@@ -88,13 +88,13 @@ namespace BeeFor.Domain.Services
                                 dataCriacao);
 
                             bool existelog = await _projetoRepository.ExisteLog(cardLog);
-                            if (!existelog)                            
+                            if (!existelog)
                                 await _projetoRepository.AddCardLog(cardLog);
                         }
                     }
                 }
+
             }
-            return null;
         }
         private async Task<List<Projeto>> ValidarProjetoIntegrado(List<ProjetoJiraResponse> projetoJiraResponseList)
         {
