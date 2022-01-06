@@ -36,7 +36,7 @@ namespace WorkerService1
                 _logger.LogInformation("Fim do Processo...", DateTime.Now);
                 Console.WriteLine("===>");
                 Console.WriteLine("===>");
-                await Task.Delay(60_000, stoppingToken);
+                await Task.Delay(1_000, stoppingToken);
             }
         }
     }

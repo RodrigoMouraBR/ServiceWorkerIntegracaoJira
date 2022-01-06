@@ -4,6 +4,7 @@ using BeeFor.Domain.Entities;
 using BeeFor.Domain.Entities.MongoDb;
 using BeeFor.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,10 @@ namespace BeeFor.Data.Repositories
         public async Task<QuadroColunaCard> PegarQuadroColunaCardPorId(Guid id)
         {
             return await _context.QuadroColunaCard.Where(x => x.Id == id).AsNoTracking().SingleOrDefaultAsync();
+        }
+        public async Task<QuadroColuna> PegarColunaPorIdJira(int idQuadroColunaJira)
+        {
+            return await _context.QuadroColuna.Where(x => x.IdQuadroColunaJira == idQuadroColunaJira).AsNoTracking().SingleOrDefaultAsync();
         }
         #endregion
 
@@ -130,13 +135,31 @@ namespace BeeFor.Data.Repositories
                                                 string acao,
                                                 Guid? idTime,
                                                 Guid IdEntidadeAlterada,
-                                                string nomeEntidadeAlterada,                                              
+                                                string nomeEntidadeAlterada,
                                                 Guid IdOrganizacao)
         {
-            var logAcaoPrincipal = new LogAcaoPrincipal(responsavelCriacao, nomePessoaResponsavel, acao, idTime, IdEntidadeAlterada, nomeEntidadeAlterada, IdOrganizacao);     
+            var logAcaoPrincipal = new LogAcaoPrincipal(responsavelCriacao, nomePessoaResponsavel, acao, idTime, IdEntidadeAlterada, nomeEntidadeAlterada, IdOrganizacao);
             await _mongoDbContext.LogsAcoesPrincipais.InsertOneAsync(logAcaoPrincipal);
         }
 
+        public async Task<bool> ExisteLog(CardLog cardLog)
+        {
+            FilterDefinition<CardLog> filter = Builders<CardLog>.Filter
+                .Where(x => x.IdColunaCard == cardLog.IdColunaCard
+                && x.IdQuadroColunaDe == cardLog.IdQuadroColunaDe
+                && x.IdQuadroColunaPara == cardLog.IdQuadroColunaPara
+                && x.DataCriacao == cardLog.DataCriacao
+                && x.DataMovimentacao == cardLog.DataMovimentacao);
+
+            IAsyncCursor<CardLog> log = await _mongoDbContext.CardLogs.FindAsync(filter);
+
+            return log.Any();
+        }
+
+        public async Task AddCardLog(CardLog cardLog)
+        {
+            await _mongoDbContext.CardLogs.InsertOneAsync(cardLog);
+        }
 
         #endregion
 
