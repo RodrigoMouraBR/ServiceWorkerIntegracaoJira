@@ -57,3 +57,4 @@ C:\Users\eferreira\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\s
 C:\Users\eferreira\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\obj\Debug\net5.0\BeeFor.Core.dll
 C:\Users\eferreira\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\obj\Debug\net5.0\ref\BeeFor.Core.dll
 C:\Users\eferreira\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\obj\Debug\net5.0\BeeFor.Core.pdb
+C:\Users\rodri\source\repos\ServiceWorkerIntegracaoJira\IntergrationWorker\src\BeeFor.Core\obj\Debug\net5.0\BeeFor.Core.csproj.AssemblyReference.cache
