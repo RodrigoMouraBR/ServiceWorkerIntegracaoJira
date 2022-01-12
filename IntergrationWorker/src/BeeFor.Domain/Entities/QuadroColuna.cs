@@ -44,9 +44,16 @@ namespace BeeFor.Domain.Entities
         public int WipLimit { get; private set; }
         public bool Ativo { get; private set; }
         public int IdQuadroColunaJira { get; private set; }
+        public int? TipoColuna { get; private set; }
+        public DateTime? DataDesativacao { get; private set; }
         public void SetIdQuadroColuna(Guid id)
         {
             Id = id;
+        }
+
+        public void SetTipoColuna(int? tipoColuna)
+        {
+            TipoColuna = tipoColuna;
         }
     }
 }

@@ -13,6 +13,8 @@ namespace BeeFor.Data.Mappings
             builder.Property(p => p.Indice).HasColumnType("int");
             builder.Property(p => p.IdOrganizacao);
             builder.Property(p => p.IdQuadroColunaJira).HasColumnType("int");
+            builder.Property(p => p.TipoColuna);
+            builder.Property(p => p.DataDesativacao);
             builder.ToTable("QuadroColunas");
         }
     }

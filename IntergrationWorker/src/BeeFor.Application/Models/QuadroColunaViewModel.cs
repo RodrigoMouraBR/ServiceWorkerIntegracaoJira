@@ -18,5 +18,7 @@ namespace BeeFor.Application.Models
         public int WipLimit { get; set; }
         public bool Ativo { get; set; }
         public int IdQuadroColunaJira { get; set; }
+        public int? TipoColuna { get; set; }
+        public DateTime? DataDesativacao { get;  set; }
     }
 }
