@@ -42,7 +42,7 @@ namespace BeeFor.Domain.Services.Common
 
                 return (null, null);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception(URLConstants.retornoErro);
             }

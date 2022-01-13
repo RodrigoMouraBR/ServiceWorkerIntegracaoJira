@@ -12,7 +12,7 @@ namespace BeeFor.Domain.Entities
             Nome = nome;
             IdOrganizacao = idOrganizacao;
             IdJira = idJira;
-            KeyJira = keyJira;          
+            KeyJira = keyJira;
             DataCriacao = dataCriacao;
             ResponsavelCriacao = responsavelCriacao;
             DataEdicao = dataEdicao;
@@ -20,20 +20,12 @@ namespace BeeFor.Domain.Entities
             ResponsavelJira = responsavelJira;
         }
 
-        protected Projeto() {
-            
-        }
-        public Guid Id { get; private set; }
-        public string Nome { get; private set; }    
-        public Guid IdOrganizacao { get; private set; }
+        protected Projeto() { }   
         public string IdJira { get; private set; }
         public string KeyJira { get; private set; }
-        public string Descricao { get; private set; }
-        public DateTime DataCriacao { get; private set; }
-        public Guid ResponsavelCriacao { get; private set; }
-        public DateTime? DataEdicao { get; private set; }
-        public Guid? ResponsavelEdicao { get; private set; }
+        public string Descricao { get; private set; }       
         public string ResponsavelJira { get; private set; }
+        public Guid ResponsavelCriacao { get; private set; }
 
         //Ad HoC Set
         public void SetIdProjeto(Guid id)
@@ -45,7 +37,5 @@ namespace BeeFor.Domain.Entities
         {
             Descricao = "Integração Jira";
         }
-
-
     }
 }

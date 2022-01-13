@@ -17,18 +17,13 @@ namespace BeeFor.Domain.Entities
             PluginAddProfissionalGoobbePlay = pluginAddProfissionalGoobbePlay;
             Oculto = oculto;
             IdQuadroJira = idQuadroJira;
-        }
-
-        public Guid Id { get; private set; }
-        public Guid IdTime { get; private set; }
-        public string Nome { get; private set; }
-        public DateTime DataCriacao { get; private set; }
-        public Guid ResponsavelCriacao { get; private set; }
-        public Guid IdOrganizacao { get; private set; }
+        }       
+        public Guid IdTime { get; private set; }     
         public bool Ativo { get; private set; }
         public bool PluginAddProfissionalGoobbePlay { get; private set; }
         public bool Oculto { get; private set; }
         public int IdQuadroJira { get; private set; }
+        public Guid ResponsavelCriacao { get; private set; }
 
         public void SetPluginAddProfissionalGoobeePlay()
         {

@@ -6,7 +6,6 @@ namespace BeeFor.Domain.Interfaces.Services
 {
     public interface IProjetoService : IDisposable
     {
-        //Projeto      
         Task<bool> UpdateProjeto(Projeto projeto);
         Task<bool> UpdateQuadro(Quadro quadro);
         Task<bool> UpdateQuadroColuna(QuadroColuna quadroColuna);

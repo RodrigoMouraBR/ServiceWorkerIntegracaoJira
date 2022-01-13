@@ -18,12 +18,10 @@ namespace BeeFor.Domain.Services
     public class IntegraProjetoJiraService : BaseService, IIntegraProjetoJiraService
     {
         private readonly IProjetoRepository _projetoRepository;
-
         public IntegraProjetoJiraService(IProjetoRepository projetoRepository, INotifier notifier) : base(notifier)
         {
             _projetoRepository = projetoRepository;
         }
-
         public async Task ObterProjetosJiraBaseAuthentication(ConfiguracaoIntegracao configuracaoIntegracao)
         {
             var endPoint = URLConstants.obterProjetosJira;
@@ -44,7 +42,6 @@ namespace BeeFor.Domain.Services
                 var _ = await this.ValidarProjetoQuadroColunaIntegrado(quadro, configuracaoIntegracao);
                 var quadroColunaCardsResults = await this.ValidarProjetoQuadroColunaCardIntegrado(configuracaoIntegracao, quadro);
                 await ParseValidacao_ArquivarCard(quadro, quadroColunaCardsResults);
-
                 await ValidarChangelogIntegrado(configuracaoIntegracao, quadro);
             }
         }
@@ -142,28 +139,21 @@ namespace BeeFor.Domain.Services
 
                 if (quadroColunaResult != null) await this.ParseValidacao_ColunaExiste(quadro, quadroColunaResult, result, indexColumn, configuracaoIntegracao);
 
-                if (quadroColunaResult == null) this.ParseValidacao_ColunaNaoExiste(quadro, result, indexColumn);
+                if (quadroColunaResult == null) await this.ParseValidacao_ColunaNaoExiste(quadro, result, indexColumn, configuracaoIntegracao);
 
                 indexColumn++;
             }
 
             return quadroColunaBeeFor;
         }
-        private void ParseValidacao_ColunaNaoExiste(Quadro quadro, Column result, int indexColumn)
+        private async Task ParseValidacao_ColunaNaoExiste(Quadro quadro, Column result, int indexColumn, ConfiguracaoIntegracao configuracaoIntegracao)
         {
+            var colunaNOmeResponse = await Parse_NomeColunaQuadro(result.Statuses[0].Id, configuracaoIntegracao);
+
+            var nomeDefinidoParaColuna = colunaNOmeResponse.UntranslatedName; /*DEFINIÇÃO DO NOME DA COLUNA*/
 
             #region
-            var quadroColuna = new QuadroColuna(quadro.Id,
-                                                        result.Name.Trim(),
-                                                        indexColumn,
-                                                        DateTime.Now,
-                                                        quadro.ResponsavelCriacao,
-                                                        null,
-                                                        null,
-                                                        quadro.IdOrganizacao,
-                                                        0,
-                                                        true,
-                                                        Convert.ToInt32(result.Statuses[0].Id));
+            var quadroColuna = new QuadroColuna(quadro.Id, nomeDefinidoParaColuna, indexColumn, DateTime.Now, quadro.ResponsavelCriacao, null, null, quadro.IdOrganizacao, 0, true, Convert.ToInt32(result.Statuses[0].Id));
 
             quadroColuna.SetIdQuadroColuna(Guid.NewGuid());
             #endregion
@@ -176,10 +166,13 @@ namespace BeeFor.Domain.Services
         }
         private async Task ParseValidacao_ColunaExiste(Quadro quadro, QuadroColuna quadroColunaResult, Column result, int indexColumn, ConfiguracaoIntegracao configuracaoIntegracao)
         {
-            var compareNome = quadroColunaResult.Nome.Trim() == result.Name.Trim();
-            var indexCompare = quadroColunaResult.Indice == indexColumn;
             bool compareTipoColuna;
+            var colunaNOmeResponse = await Parse_NomeColunaQuadro(result.Statuses[0].Id, configuracaoIntegracao);
 
+            var nomeDefinidoParaColuna = colunaNOmeResponse.UntranslatedName; /*DEFINIÇÃO DO NOME DA COLUNA*/
+
+            var compareNome = quadroColunaResult.Nome.Trim() == colunaNOmeResponse.UntranslatedName.Trim();
+            var indexCompare = quadroColunaResult.Indice == indexColumn;    
             var entradaSaida = await Parse_EntradaSaida(quadro, configuracaoIntegracao, quadroColunaResult);
 
             switch (entradaSaida)
@@ -203,10 +196,19 @@ namespace BeeFor.Domain.Services
 
             if (!compareNome || !indexCompare || !compareTipoColuna)
             {
-                var quadroColuna = new QuadroColuna(quadroColunaResult.IdQuadro, result.Name.Trim(), indexColumn, quadroColunaResult.DataCriacao, quadroColunaResult.ResponsavelCriacao,
-                                                    quadroColunaResult.DataEdicao, quadroColunaResult.ResponsavelEdicao, quadroColunaResult.IdOrganizacao, quadroColunaResult.WipLimit,
-                                                    quadroColunaResult.Ativo, quadroColunaResult.IdQuadroColunaJira);
+                var quadroColuna = new QuadroColuna(quadroColunaResult.IdQuadro,
+                                                     nomeDefinidoParaColuna.Trim(), 
+                                                     indexColumn, 
+                                                     quadroColunaResult.DataCriacao, 
+                                                     quadroColunaResult.ResponsavelCriacao,
+                                                     quadroColunaResult.DataEdicao, 
+                                                     quadroColunaResult.ResponsavelEdicao, 
+                                                     quadroColunaResult.IdOrganizacao, 
+                                                     quadroColunaResult.WipLimit,
+                                                     quadroColunaResult.Ativo, 
+                                                     quadroColunaResult.IdQuadroColunaJira);
 
+                quadroColuna.SetIdQuadroColuna(quadroColunaResult.Id);
                 switch (entradaSaida)
                 {
                     case "new":
@@ -224,12 +226,17 @@ namespace BeeFor.Domain.Services
                     default:
                         quadroColuna.SetTipoColuna(null);
                         break;
-                }
-
-                quadroColuna.SetIdQuadroColuna(quadroColunaResult.Id);
+                }               
 
                 Queue.EnviacardParaFila(quadroColuna, "QuadroColunaQueue");
             }
+        }
+        private async Task<ColunaNomeReponse> Parse_NomeColunaQuadro(string id, ConfiguracaoIntegracao configuracaoIntegracao)
+        {
+            var endPoint = URLConstants.obterConfiguracaoQuadroJiraNomeColuna;
+            var results = new ColunaNomeReponse();
+            var colunaNomeReponse = await InvokeEndPoint.Invoke(configuracaoIntegracao, endPoint, results, Convert.ToInt32(id), false);
+            return colunaNomeReponse.Item1;
         }
         private async Task<string> Parse_EntradaSaida(Quadro quadro, ConfiguracaoIntegracao configuracaoIntegracao, QuadroColuna quadroColuna)
         {
@@ -255,7 +262,6 @@ namespace BeeFor.Domain.Services
             return tipoColuna;
         }
 
-
         #endregion
 
         #region Quadro Cards
@@ -268,17 +274,17 @@ namespace BeeFor.Domain.Services
             var projetoQuadroTarefa = await InvokeEndPoint.Invoke(configuracaoIntegracao, endPoint, results, quadro.IdQuadroJira, false);
 
             var listIdQuadroCard = new List<string>();
-
+            int indexCard = 1;
             foreach (var quadroColunaJira in projetoQuadroTarefa.Item1?.Issues)
             {
                 var quadroColunaBeeFor = await _projetoRepository.ObterProjetoQuadroColunaPorIdQuadroColunaJira(Convert.ToInt32(quadroColunaJira.Fields.Status.Id));
                 var quadroJiraList = projetoQuadroTarefa.Item1?.Issues.Where(c => c.Fields.Status.Id == quadroColunaBeeFor.IdQuadroColunaJira.ToString());
-
+               
                 foreach (var quadroJira in quadroJiraList)
                 {
                     var cardConferido = listIdQuadroCard.Where(c => c.Contains(quadroJira.Id)).Any();
 
-                    int indexCard = 1;
+                   
                     if (!cardConferido)
                     {
                         var _quadroColunaCard = await _projetoRepository.PegarCardPorIdJira(quadroJira.Id);
@@ -291,19 +297,17 @@ namespace BeeFor.Domain.Services
                         #endregion
 
                         #region EXISTE O CARD / ESTÁ EM COLUNAS DIFERENTES (JIRA X BEEFOR) PREVALECE O JIRA -> ENVIAR PARA FILA PARA SINCRONIZACAO
-
                         if (_quadroColunaCard != null)
                         {
-
                             ParseValidacao_CardEmColunaDiferente(quadroColunaBeeFor, quadroJira, quadroJira.Fields.Status.Id, _quadroColuna, _quadroColunaCard, indexCard);
                         }
-
                         #endregion
 
                         listIdQuadroCard.Add(quadroJira.Id);
+                        indexCard++;
                     }
 
-                    indexCard++;
+                    
                 }
             }
             return projetoQuadroTarefa.Item1;
@@ -349,7 +353,6 @@ namespace BeeFor.Domain.Services
                 Queue.EnviacardParaFila(quadroColunaCard, "QuadroColunaCardQueue");
             }
         }
-
         private async Task ParseValidacao_ArquivarCard(Quadro quadro, BoardEpicNoneIssueResponse boardEpicNoneIssueResponse)
         {
             //Buscar as colunas pelo id do quadro

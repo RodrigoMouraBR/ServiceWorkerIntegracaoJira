@@ -31,26 +31,19 @@ namespace BeeFor.Domain.Entities
             IdQuadroColunaJira = idQuadroColunaJira;
         }
 
-        protected QuadroColuna(){}
-        public Guid Id { get; private set; }
-        public Guid IdQuadro { get; private set; }
-        public string Nome { get; private set; }
-        public int Indice { get; private set; }
-        public DateTime DataCriacao { get; private set; }
-        public Guid ResponsavelCriacao { get; private set; }
-        public DateTime? DataEdicao { get; private set; }
-        public Guid? ResponsavelEdicao { get; private set; }
-        public Guid IdOrganizacao { get; private set; }
+        protected QuadroColuna(){}      
+        public Guid IdQuadro { get; private set; }        
+        public int Indice { get; private set; }  
         public int WipLimit { get; private set; }
         public bool Ativo { get; private set; }
         public int IdQuadroColunaJira { get; private set; }
         public int? TipoColuna { get; private set; }
         public DateTime? DataDesativacao { get; private set; }
+        public Guid ResponsavelCriacao { get; private set; }
         public void SetIdQuadroColuna(Guid id)
         {
             Id = id;
         }
-
         public void SetTipoColuna(int? tipoColuna)
         {
             TipoColuna = tipoColuna;
