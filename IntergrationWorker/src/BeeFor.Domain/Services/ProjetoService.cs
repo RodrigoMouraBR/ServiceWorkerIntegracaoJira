@@ -1,15 +1,17 @@
-﻿using BeeFor.Domain.Entities;
+﻿using BeeFor.Core.Interfaces;
+using BeeFor.Core.Services;
+using BeeFor.Domain.Entities;
 using BeeFor.Domain.Interfaces.Repositories;
 using BeeFor.Domain.Interfaces.Services;
 using System.Threading.Tasks;
 
 namespace BeeFor.Domain.Services
 {
-    public class ProjetoService : IProjetoService
+    public class ProjetoService : BaseService, IProjetoService
     {
         private readonly IProjetoRepository _projetoRepository;
 
-        public ProjetoService(IProjetoRepository projetoRepository)
+        public ProjetoService(IProjetoRepository projetoRepository, INotifier notifier) : base(notifier)
         {
             _projetoRepository = projetoRepository;
         }
@@ -24,7 +26,6 @@ namespace BeeFor.Domain.Services
             projeto.SetDescricao();
             return await _projetoRepository.UpdateProjeto(projeto);
         }
-
         public async Task<bool> UpdateQuadro(Quadro quadro)
         {
             return await _projetoRepository.UpdateQuadro(quadro);
@@ -43,9 +44,7 @@ namespace BeeFor.Domain.Services
                 return await _projetoRepository.UpdateQuadroColuna(quadroColuna);
 
             return false;
-        }
-
-       
+        }       
         public async Task<bool> UpdateQuadroColunaCard(QuadroColunaCard quadroColunaCard)
         {
            var colunaCardExiste = await _projetoRepository.PegarQuadroColunaCardPorId(quadroColunaCard.Id);

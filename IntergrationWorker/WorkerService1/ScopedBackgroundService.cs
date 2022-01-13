@@ -20,13 +20,13 @@ namespace WorkerService1
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation($"{nameof(ScopedBackgroundService)} is running.");
+           // _logger.LogInformation($"{nameof(ScopedBackgroundService)} is running.");
 
             await DoWorkAsync(stoppingToken);
         }
         private async Task DoWorkAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation($"{nameof(ScopedBackgroundService)} is working.");
+            //_logger.LogInformation($"{nameof(ScopedBackgroundService)} is working.");
 
             using (IServiceScope scope = _serviceProvider.CreateScope())
             {
@@ -38,7 +38,7 @@ namespace WorkerService1
         }
         public override async Task StopAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation($"{nameof(ScopedBackgroundService)} is stopping.");
+           // _logger.LogInformation($"{nameof(ScopedBackgroundService)} is stopping.");
 
             await base.StopAsync(stoppingToken);
         }

@@ -18,16 +18,11 @@ namespace BeeFor.Domain.Entities
             ResponsavelEdicao = responsavelEdicao;
         }
 
-        protected ConfiguracaoIntegracao() { }
-        public Guid Id { get; private set; }
+        protected ConfiguracaoIntegracao() { }      
         public Guid IdTime { get; private set; }
-        public Guid IdOrganizacao { get; private set; }
         public string Usuario { get; private set; }
         public string Chave { get; private set; }
-        public string BaseUrlJira { get; private set; }
-        public DateTime DataCriacao { get; private set; }
-        public string ResponsavelCriacao { get; private set; }
-        public DateTime? DataEdicao { get; private set; }
-        public Guid? ResponsavelEdicao { get; private set; }
+        public string BaseUrlJira { get; private set; }       
+        public string ResponsavelCriacao { get; private set; }     
     }
 }

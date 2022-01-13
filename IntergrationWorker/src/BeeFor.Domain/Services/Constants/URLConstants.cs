@@ -13,6 +13,7 @@ namespace BeeFor.Domain.Services.Constants
         public static string obterProjetosJira = "rest/api/3/project";
         public static string obterProjetosJiraPorId = "rest/api/3/project/{param}";
         public static string obterConfiguracaoQuadroJira = "rest/agile/1.0/board/{param}/configuration";
+        public static string obterConfiguracaoQuadroJiraNomeColuna = "rest/api/2/status/{param}";
         public static string obterProjetoQuadroTarefaJira_Changelog = "rest/agile/1.0/board/{param}/epic/none/issue?&expand=changelog";
         
 
