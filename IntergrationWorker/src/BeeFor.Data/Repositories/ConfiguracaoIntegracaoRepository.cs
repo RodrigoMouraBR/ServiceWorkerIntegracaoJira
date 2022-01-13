@@ -16,7 +16,7 @@ namespace BeeFor.Data.Repositories
         }
         public async Task<List<ConfiguracaoIntegracao>> ConfiguracaoIntegracaoLista()
         {
-            return await _context.ConfiguracaoIntegracoes.AsNoTracking().ToListAsync();        
+            return await _context.ConfiguracaoIntegracoes.AsNoTracking().ToListAsync();
         }
     }
 }
