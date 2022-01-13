@@ -1,5 +1,13 @@
 # Service Worker Integracao Jira
 
+### Observações importantes:
+
+Este projeto possui 4 Consumer do RabbitMq e um WorkerService dentro da mesma solution.
+
+É possivel segregar os consumers. 
+É possivel criar um serviço do windows com o WorkerService e rodar em background.
+
+
 ### Comando para criação do container Docker RabbitMQ:
 
 docker run -d --hostname rabbitserver --name rabbitmq-server -p 15672:15672 -p 5672:5672 rabbitmq:3-management
