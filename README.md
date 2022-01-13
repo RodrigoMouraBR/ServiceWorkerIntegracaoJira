@@ -4,7 +4,7 @@
 
 Este projeto possui 4 Consumer do RabbitMq e um WorkerService dentro da mesma solution.
 
-É possivel segregar os consumers
+É possivel segregar os consumers. 
 É possivel criar um serviço do windows com o WorkerService e rodar em background.
 
 
