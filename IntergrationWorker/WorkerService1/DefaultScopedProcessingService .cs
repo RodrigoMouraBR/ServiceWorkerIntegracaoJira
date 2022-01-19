@@ -24,9 +24,12 @@ namespace WorkerService1
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Novo Processo...", DateTimeOffset.Now);
                 Console.WriteLine("===>");
                 Console.WriteLine("===>");
+
+                _logger.LogInformation("Novo processo iniciado em : {time}", DateTimeOffset.Now);
+
+                
 
                 var configuracaoToken = await _configuracaoIntegracaoAppService.ConfiguracaoIntegracaoLista();
 
@@ -35,9 +38,8 @@ namespace WorkerService1
                     await _integraProjetoJiraAppService.ObterProjetosJiraBaseAuthentication(config);
                 }
 
-                _logger.LogInformation("Fim do Processo...", DateTimeOffset.Now);
-                Console.WriteLine("===>");
-                Console.WriteLine("===>");
+                _logger.LogInformation("Processo finalizado em : {time}", DateTimeOffset.Now);
+               
                 await Task.Delay(15_000, stoppingToken);
             }
         }
