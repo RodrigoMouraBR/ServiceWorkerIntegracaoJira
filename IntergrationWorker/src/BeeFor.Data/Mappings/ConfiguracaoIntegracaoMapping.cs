@@ -19,6 +19,8 @@ namespace BeeFor.Data.Mappings
             builder.Property(p => p.DataEdicao).HasColumnType("datetime2");
             builder.Property(p => p.ResponsavelEdicao);
 
+            builder.Ignore(p => p.Nome);
+
             builder.ToTable("ConfiguracaoIntegracoes");
         }
     }
